@@ -13,7 +13,7 @@ for date in data['rates']:
             # filtered_data[date][currency] = currency_value
             dictObj = {}
             dictObj['date'] = date
-            dictObj['currencyId'] = currency_list.index(currency)
+            dictObj['currencyId'] = str( currency_list.index(currency) + 1 )
             dictObj['value'] = currency_value
             filtered_data.append(dictObj)
 

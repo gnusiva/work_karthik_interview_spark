@@ -20,7 +20,12 @@ def queryDatabase(currency):
     conn = sqlite3.connect('../03spark/test.db')
     c = conn.cursor()
     result = []
-    for row in c.execute("SELECT * FROM DailyExchange  WHERE currencyId='6' ORDER BY date LIMIT 100"):
+    qry = "SELECT * FROM currency  WHERE name='" + currency + "'"
+    c.execute(qry)
+    id = c.fetchone()[0]
+    qry2 = "SELECT * FROM DailyExchange  WHERE currencyId='"+ str(id) +"' ORDER BY date LIMIT 1000"
+    print(qry2)
+    for row in c.execute(qry2):
         date = row[1]
         value = row[2]
         result.append([date, value])
